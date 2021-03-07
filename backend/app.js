@@ -19,30 +19,18 @@ app.use(express.json())
 mongoose.connect('mongodb://localhost:27017/classroom', option);
 // Create User Schema
 const userSchema = new mongoose.Schema({
-    username: String,
     email: String,
     password: String,
-    rooms: Array
 })
 
-//Hash password
-userSchema.pre('save',async function (next){
-    try{
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(this.password,salt)
-        this.password = hashedPassword
-        next()
-        
-
-    }
-    catch(error){
-        next(error)
-    }
-})
-userSchema.methods.validatePassword = async function validatePassword(data) {
-    return bcrypt.compare(data, this.password);
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
   
+  // checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
 
 // Create User Model
 const userModel = new mongoose.model('users', userSchema);
@@ -53,13 +41,13 @@ app.get('/', (req, res) => {
 })
 
 //query
-app.get('/users', (req, res) => {
-    userModel.find({})
-        .then(users => res.json(users))
-        .catch(error =>
-            res.status(400).json({ message: 'somethibng wrong' }))
-})
-app.get('/users/:username', (req, res) => {
+// app.get('/getUsers', (req, res) => {
+//     userModel.find({})
+//         .then(users => res.json(users))
+//         .catch(error =>
+//             res.status(400).json({ message: 'somethibng wrong' }))
+// })
+app.get('/getUser/:username', (req, res) => {
     const { username } = req.params;
 
     userModel.find({ username: username })
@@ -67,21 +55,30 @@ app.get('/users/:username', (req, res) => {
         .catch(error =>
             res.status(400).json(error))
 })
-app.post('/addUser/:username', (req, res) => {
-    const { username } = req.params;
-    const { email, password, rooms } = req.body;
-
-
+//register
+app.post('/addUser', (req, res) => {
+    const { email, password } = req.body;
+    
     const newUser = new userModel({
-        username: username,
         email,
-        password,
-        rooms
     })
+    newUser.password = newUser.generateHash(password)
     newUser.save()
-    res.json({ message: "complete" })
+    res.json({ message: newUser.password })
 })
 
+app.post('/login', function(req, res) {
+    userModel.findOne({email: req.body.email}, function(err, user) {
+  
+      if (!user.validPassword(req.body.password)) {
+        console.log("no");
+        res.json({message:"Incorrect password"})
+    } else {
+        console.log("matched");
+        res.json({message:"Login complete"})
+      }
+    });
+  });
 
 app.listen(port, () => {
     console.log('Running on port: ', port);
