@@ -1,26 +1,45 @@
 import { Component } from 'react';
 import Room from './Room';
+
 export default class Rooms extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { rooms: [] }
+
+    }
+    componentDidMount() {
+        const requestOption = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        }
+        fetch('http://localhost:8000/getJoin/'+window.email, requestOption)
+            .then(res => res.json())
+            .then(data => this.setState({ rooms: data }))
+
+    }
+
+
     render() {
 
-        const rooms = [{ subj: 'cn101', name: 'Jack Weerachai' }, 
-                        { subj: 'sf210', name: 'Paul Supakit' }, 
-                        { subj: 'sf220', name: 'Ajarn Piya' },
-    ]
+
         return (
-                <div className="row" >
 
-                    {rooms.map(room => {
-                        return (
+            <div className="row" >
+                
+                {this.state.rooms && this.state.rooms.map(room => {
+                    return (
+                        <Room
+                            code={room}
+                            rooms={this.state.rooms}
+                        >
+                        </Room>
 
-                            <Room
-                                subj={room.subj}
-                                name={room.name}
-                            >
-                            </Room>
-                        )
-                    })}
-                </div>
+                    )
+                })}
+
+            </div>
         )
+
+
     }
 }
