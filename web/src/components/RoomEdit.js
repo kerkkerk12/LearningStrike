@@ -56,7 +56,7 @@ function RoomEdit() {
     return (
         <div style={{ backgroundColor: "#f5c27d", width: '100vw', height: '100vh' }}>
             <Navbar></Navbar>
-            <div className="card text-center" style={{ maxWidth: '40%' }}>
+            <div className="card text-center" style={{ maxWidth: '45%' }}>
                 <h5 className="card-header">Room edit</h5>
                 <div className="card-body">
                     <div className="row">
