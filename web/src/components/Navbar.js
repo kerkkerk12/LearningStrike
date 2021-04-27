@@ -26,7 +26,6 @@ export default class Navbar extends Component {
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/home">Home</Link></a>
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/editroom">Edit Room</Link></a>
-              <a style={{ marginRight: "30px", marginTop: "auto" }}>Calendar</a>
               <a style={{ marginRight: "30px", marginTop: "auto" }}>Todo work</a>
               {/* <button className="btn me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#loginPopup" style={{ marginLeft: '15px' ,backgroundColor:'#f5c27d'}}>Login</button>
                     <button className="btn me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#registerPopup" style={{ marginLeft: '15px',backgroundColor:'#ff9966'}}>REGISTER</button> */}
