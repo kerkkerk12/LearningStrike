@@ -1,14 +1,20 @@
-const { json } = require('body-parser');
+// const { json } = require('body-parser');
+
 const express = require('express');
 const app = express();
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const { decodeBase64 } = require('bcryptjs');
-const { join } = require('path');
 
-const http = require('http').createServer(app)
-const io = require('socket.io')(http)
+const port = 8000
+const socketio = require('socket.io')
+
+const server = app.listen(port, () => {
+    console.log('Running on port: ', port);
+})
+
+const io = socketio.listen(server)
 
 io.on('connection', socket => {
   console.log("New user connected")
@@ -17,15 +23,6 @@ io.on('connection', socket => {
     console.log(message);
   })
 })
-
-http.listen(4000, function() {
-  console.log('listening on port 4000')
-})
-
-
-
-const port = 8000
-
 
 
 const option = {
@@ -73,25 +70,6 @@ app.get('/', (req, res) => {
     res.json({ message: 'ok' });
 })
 
-
-// query
-// app.get('/getUsers', (req, res) => {
-//     userModel.find({})
-//         .then(users => res.json(users))
-//         .catch(error =>
-//             res.status(400).json({ message: 'somethibng wrong' }))
-
-// })
-
-
-// app.get('/getUser/:username', (req, res) => {
-//     const { username } = req.params;
-
-//     userModel.find({ username: username })
-//         .then(data => res.json(data || {}))
-//         .catch(error =>
-//             res.status(400).json(error))
-// })
 
 
 //register
@@ -235,9 +213,5 @@ app.get('/getJoin/:email', (req, res) => {
             res.json(error))
 })
 
-
-app.listen(port, () => {
-    console.log('Running on port: ', port);
-})
 
 
