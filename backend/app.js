@@ -14,7 +14,7 @@ const server = app.listen(port, () => {
     console.log('Running on port: ', port);
 })
 
-const io = socketio.listen(server)
+const io = socketio.listen(servr)
 
 io.on('connection', socket => {
   console.log("New user connected")
