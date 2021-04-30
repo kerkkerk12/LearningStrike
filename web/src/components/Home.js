@@ -11,7 +11,7 @@ export default function Home() {
 
         <div style={{ backgroundColor: "#f5c27d", width: '100vw', height: '100vh' }}>
             <Navbar></Navbar>
-            <div style={{ marginLeft: "2.5%", color: "#ffffff"}}>
+            <div style={{ marginLeft: "1.8%", color: "#ffffff", fontFamily:"italic"}}>
                 <h2>HOME</h2>
             </div>
             <div className="row">
