@@ -47,6 +47,7 @@ export default class Navbar extends Component {
             </div>
           </div>
         </nav>
+        <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
       </div>
     );
   }
