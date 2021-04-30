@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import auth from "./AUTH/auth";
 import { Redirect,Link } from "react-router-dom";
-import check from "./AUTH/check"
+import check from "./AUTH/check";
 
 export default class Login extends Component {
 
@@ -13,10 +13,11 @@ export default class Login extends Component {
       successfulPOST: this.state,
       message: '',
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.Submit = this.Submit.bind(this);
-
   }
+
 
   handleChange(event) {
     if (event.target.name === "email") {
@@ -29,7 +30,7 @@ export default class Login extends Component {
 
   // submit login//
   Submit() {
-    if (check.Length(this.state.email, this.state.password)) {
+    if (check.LoginValidateEmail(this.state.email, this.state.password)) {
       fetch("http://localhost:8000/login", {
       method: "POST",
       headers: {

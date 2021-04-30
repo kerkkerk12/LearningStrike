@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import check from "./AUTH/check";
 
 export default class Register extends Component {
   constructor(props) {
@@ -13,10 +14,10 @@ export default class Register extends Component {
       confirm: "",
       successfulPOST: this.state,
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
   //handle change//
   handleChange(event) {
     if (event.target.name === "firstname") {
@@ -31,11 +32,11 @@ export default class Register extends Component {
       this.setState({ cpassword: event.target.value });
     }
   }
-
+  
   // submit register//
   onSubmit(event) {
     event.preventDefault("");
-    if (this.state.password === this.state.cpassword) {
+    if (check.RegisValidateEmail(this.state.email, this.state.password, this.state.cpassword) && check.nameCheck(this.state.name, this.state.lastname)) {
       fetch("http://localhost:8000/addUser", {
         method: "POST",
         headers: {
@@ -43,7 +44,7 @@ export default class Register extends Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstname: this.state.firstname,
+          name: this.state.firstname,
           lastname: this.state.lastname,
           email: this.state.email,
           password: this.state.password,
@@ -51,7 +52,7 @@ export default class Register extends Component {
       }).then((res) => res.json());
       this.setState({ successfulPOST: true });
     } else {
-      this.setState({ confirm: "Incorrect password" });
+      this.setState({ confirm: "Email or Password in Valid" });
     }
   }
 

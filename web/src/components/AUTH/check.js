@@ -1,29 +1,28 @@
+import validator from 'validator'
+
 class Checks {
-    constructor() {
 
-    this.emailCheck = false;
-    this.passCheck = false;
-
-    }
-
-    Length(email, password) {
-        this.emailCheck = false;
-        this.passCheck = false; 
-        
-        if (email.length > 0 ) {
-            this.emailCheck = true
-        }
-        if (password.length > 0 ) {
-            this.passCheck = true
-        }
-        if (this.emailCheck === true && this.passCheck === true) {
+    LoginValidateEmail(email, password) {
+        if (validator.isEmail(email) && password.length > 0) {
             return true;
-        }else{ 
-            return false; 
-        }
-
+          } else return false;
     }
 
+    RegisValidateEmail(email, password, cpassword) {
+        if (password === cpassword) {
+            if (validator.isEmail(email) && password.length > 0) {
+                return true;
+              } else return false;
+        }
+        else return false;
+    }
+
+    nameCheck(name, lastname) {
+        if (name != "" && lastname != ""){
+            return true;
+        }
+        else return false;
+    }
 }
 
 export default new Checks();
