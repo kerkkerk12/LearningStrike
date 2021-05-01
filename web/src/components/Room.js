@@ -26,7 +26,7 @@ export default class Room extends Component {
     render() {
         return (
             <section>
-                <div className="card col" style={{ width: '18rem', margin: '30px' }}>
+                <div className="card col" style={{ width: '18rem', margin: '30px',padding: "10px",border: "5px solid black" }}>
                     <img className="card-img-top" src={process.env.PUBLIC_URL + '/images/dog.png'} style={{ width: '100%' }} alt="Card image cap" />
                     <div className="card-body">
                         <center>
