@@ -17,6 +17,8 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
+        <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
+        <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
         <nav
           className="navbar navbar-expand-lg navbar-light"
           style={{ backgroundColor: "#DEA80A" }}
@@ -40,13 +42,17 @@ export default class Navbar extends Component {
                 Logout
               </a>
               {window.email}
+             
               <img
                 src={process.env.PUBLIC_URL + "/images/dog.png"}
                 style={{ width: "50px" }}
+                
               ></img>
+              
             </div>
           </div>
         </nav>
+        <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
         <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
       </div>
     );
