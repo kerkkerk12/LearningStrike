@@ -12,6 +12,7 @@ export default class Navbar extends Component {
 
   onClick() {
     auth.logout();
+    localStorage.clear()
     window.location.reload();
   }
   render() {

@@ -1,7 +1,8 @@
 import './App.css';
 import Register from "./components/Register";
 import { ProtectedRoute } from './protected.route';
-import {Component , useState} from 'react';
+import token from "./components/AUTH/token";
+import {Component , useState, useEffect} from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React from 'react'
 
@@ -10,14 +11,30 @@ import Home from './components/Home';
 import Room from './components/Room';
 import Mainroom from './components/Mainroom';
 import RoomEdit from './components/RoomEdit';
-window.name = "null";
 
+function refresh(){
+  if (window.performance) {
+    if (performance.navigation.type == 1) {
+      if (localStorage.getItem("token")){
+        token.setToken();
+      }
+    }
+  }
+}
 // import dog from 'process.env.PUBLIC_URL/images/dog.png';
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    refresh();
+  }
+  
+
+  
 
   render(){
 
     return (
+      
       <div style={{overflowX:'hidden'}}>
       <div>
          <Switch>
