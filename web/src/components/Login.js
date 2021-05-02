@@ -50,6 +50,7 @@ export default class Login extends Component {
           this.setState({ message: data.message });
         }
       });}
+      
       else{
         this.setState({ message: "Email and Password incorrect" });
       }
@@ -59,7 +60,12 @@ export default class Login extends Component {
   render() {
     console.log(auth.isAuthenticated());
 
-        if (auth.isAuthenticated()){return ( <Redirect push to="/home" />)
+        if (auth.isAuthenticated()){return (<Redirect
+          to={{
+          pathname: "/home",
+          state: { isLogin: true }
+        }}
+      />)
         }
         else{  
           return(
