@@ -9,7 +9,9 @@ export default function Home() {
 
     return (
 
-        <div style={{ backgroundColor: "#f5c27d", width: '100vw', height: '100vh' }}>
+      
+
+       <div style={{ backgroundImage: "url(/images/YellowWallpaper.png)",height: "cover",backgroundSize: "cover",}}>
             <Navbar></Navbar>
                 
             <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Lucida Bright",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "12px",marginTop: "8px"}}>
@@ -32,6 +34,7 @@ export default function Home() {
             </div>
 
         </div>
+        
     )
 
 }

@@ -50,13 +50,18 @@ function RoomEdit() {
         .then(data => setMessage( data.message ))
         
     }
-        
+    
     
 
     return (
-        <div style={{ backgroundColor: "#f5c27d", width: '100vw', height: '100vh'}}>
+        <div 
+            style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 
             <Navbar></Navbar>
-            <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"15%",marginLeft:"27%"}}>
+            <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Lucida Bright",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "12px",marginTop: "8px"}}>
+                <h2>ROOM EDIT</h2>
+               
+            </div>
+            <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%"}}>
                 <h5 className="card-header">Room edit</h5>
                 <div className="card-body">
                     <div className="row">
