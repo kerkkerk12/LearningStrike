@@ -24,7 +24,7 @@ export default function Home(props) {
         
         <div style={{ backgroundImage: 'url(/images/YellowWallpaper3.png)', height: "150vh", backgroundSize: "cover" }}>
             <Navbar></Navbar>
-            {showAlert && auth.loginAlert() &&<div>{alertLogin()}</div>}    
+            {showAlert &&<div>{alertLogin()}</div>}    
             <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Lucida Bright",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "12px",marginTop: "8px"}}>
                 <h2>HOME</h2>
                
