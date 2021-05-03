@@ -47,6 +47,7 @@ export default class Login extends Component {
         auth.login();
         localStorage.setItem('token', JSON.stringify({email: this.state.email, password: this.state.password,}));
         this.setState({ message: data.message });
+        alert("login complete!!")
         } else {
           this.setState({ message: data.message });
         }

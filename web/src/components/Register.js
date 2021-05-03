@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import auth from "./AUTH/auth";
 import check from "./AUTH/check";
 
 export default class Register extends Component {
@@ -51,6 +52,7 @@ export default class Register extends Component {
         }),
       }).then((res) => res.json());
       this.setState({ successfulPOST: true });
+      auth.login();
     } else {
       this.setState({ confirm: "Email or Password in Valid" });
     }
@@ -58,7 +60,8 @@ export default class Register extends Component {
 
   render() {
     if (this.state.successfulPOST === true) {
-      return <Redirect push to={{ pathname: "/" }} />;
+      window.email = this.state.email;
+      return <Redirect push to={{ pathname: "/home" }} />;
     } else {
       return (
         <div

@@ -9,22 +9,11 @@ import { Route, Router } from 'react-router';
 
 export default function Home(props) {
     
-    const [showAlert,setShowAlert] = useState(false);
-    const alertLogin = () => {
-        return alert("login success")
-    }
-    
-    useEffect(() => {
-        if (auth.isAuthenticated()) {
-            setShowAlert(true)
-        }
-    }, [])
     return (
         
         
         <div style={{ backgroundImage: 'url(/images/YellowWallpaper3.png)', height: "150vh", backgroundSize: "cover" }}>
-            <Navbar></Navbar>
-            {showAlert &&<div>{alertLogin()}</div>}    
+            <Navbar></Navbar> 
             <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Lucida Bright",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "12px",marginTop: "8px"}}>
                 <h2>HOME</h2>
                
