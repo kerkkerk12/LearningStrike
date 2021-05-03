@@ -1,5 +1,10 @@
 import React, { Component, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+<<<<<<< Updated upstream
+=======
+import auth from "./AUTH/auth";
+import check from "./AUTH/check";
+>>>>>>> Stashed changes
 
 export default class Register extends Component {
   constructor(props) {
@@ -50,6 +55,8 @@ export default class Register extends Component {
         }),
       }).then((res) => res.json());
       this.setState({ successfulPOST: true });
+      auth.login();
+
     } else {
       this.setState({ confirm: "Incorrect password" });
     }
@@ -57,7 +64,8 @@ export default class Register extends Component {
 
   render() {
     if (this.state.successfulPOST === true) {
-      return <Redirect push to={{ pathname: "/" }} />;
+      window.email = this.state.email;
+      return <Redirect push to={{ pathname: "/home" }} />;
     } else {
       return (
         <div

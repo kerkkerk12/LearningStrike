@@ -72,16 +72,11 @@ function Chat() {
 	}
 
 	return (
-		
-		
-		
+
 		<div className="card">
 			<center>
-
 			<form onSubmit={onMessageSubmit}>
 				<h1>Chat</h1>
-				
-
 				<div className="render-chat" style={style.render_chat}>
 				{renderChat()}
 				</div>

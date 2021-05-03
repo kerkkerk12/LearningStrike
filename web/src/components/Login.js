@@ -48,6 +48,7 @@ export default class Login extends Component {
         } else {
           this.setState({ message: data.message });
         }
+        alert("login colplete!!!")
       });}
       else{
         this.setState({ message: "Email and Password incorrect" });
@@ -58,7 +59,15 @@ export default class Login extends Component {
   render() {
     console.log(auth.isAuthenticated());
 
+<<<<<<< Updated upstream
         if (auth.isAuthenticated()){return ( <Redirect push to="/home" />)
+=======
+        if (auth.isAuthenticated()){return (<Redirect
+          to={{
+          pathname: "/home",
+        }}
+      />)
+>>>>>>> Stashed changes
         }
         else{  
           return(
