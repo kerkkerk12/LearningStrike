@@ -1,5 +1,5 @@
 import TextField from "@material-ui/core/TextField"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState ,Component} from "react"
 import io from "socket.io-client"
 // import "./Chat.css"
 const style = {
@@ -35,18 +35,30 @@ const style = {
 	span: { color: "black" }
   }
   
-function Chat() {
-	const [ state, setState ] = useState({ message: "", name: window.email })
+function Chat(props) {
+	const [ state, setState ] = useState({ message: "", name: window.email ,code:""})
 	const [ chat, setChat ] = useState([])
-
+	// const {roomcode} = props;
+	const [code,setCode] = useState(props.roomcode)
 	const socketRef = useRef()
 
 	useEffect(
+		// () => {
+		// 	socketRef.current = io.connect("http://localhost:8000")
+		// 	socketRef.current.on("message", ({ name, message }) => {
+		// 		setChat([ ...chat, { name, message } ])
+		// 	})
+		// 	return () => socketRef.current.disconnect()
+		// },
+		// [ chat ]
 		() => {
 			socketRef.current = io.connect("http://localhost:8000")
-			socketRef.current.on("message", ({ name, message }) => {
+			
+			socketRef.current.on("send message", ({ name, message }) => {
 				setChat([ ...chat, { name, message } ])
+				alert(code)
 			})
+			console.log(code);
 			return () => socketRef.current.disconnect()
 		},
 		[ chat ]
@@ -58,12 +70,14 @@ function Chat() {
 
 	const onMessageSubmit = (e) => {
 		const { name, message } = state
-		socketRef.current.emit("message", { name, message })
+		socketRef.current.emit("send message", { name, message })
 		e.preventDefault()
 		setState({ message: "", name })
 	}
 
 	const renderChat = () => {
+		
+
 		return chat.map(({ name, message }, index) => (
 			<div key={index}>
 				<div class="alert alert-warning" role="alert" id="message-list" >{name}: <span style={style.span}>{message}</span></div>
