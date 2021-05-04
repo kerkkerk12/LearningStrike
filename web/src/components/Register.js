@@ -53,6 +53,7 @@ export default class Register extends Component {
       }).then((res) => res.json());
       this.setState({ successfulPOST: true });
       auth.login();
+      localStorage.setItem('token', JSON.stringify({email: this.state.email, password: this.state.password,}));
     } else {
       this.setState({ confirm: "Email or Password in Valid" });
     }
