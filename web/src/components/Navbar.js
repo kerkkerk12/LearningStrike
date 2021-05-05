@@ -22,7 +22,7 @@ export default class Navbar extends Component {
         <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
         <nav
           className="navbar navbar-expand-lg navbar-light"
-          style={{ backgroundColor: "#DEA80A" }}
+          style={{ backgroundColor: "#DEA80A",fontFamily:"Adobe Fan Heiti Std " }}
         >
           <div className="container-fluid">
             <span className="navbar-brand">CLASS HUB</span>

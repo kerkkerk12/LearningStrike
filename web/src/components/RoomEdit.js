@@ -57,7 +57,7 @@ function RoomEdit() {
         <div 
             style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 
             <Navbar></Navbar>
-            <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Lucida Bright",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "12px",marginTop: "8px"}}>
+            <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Adobe Fan Heiti Std",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "15px",marginTop: "8px"}}>
                 <h2>ROOM EDIT</h2>
                
             </div>
