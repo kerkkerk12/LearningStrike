@@ -61,7 +61,7 @@ function RoomEdit() {
                 <h2>ROOM EDIT</h2>
                
             </div>
-            <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%"}}>
+            <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%",fontFamily:"Adobe Fan Heiti Std"}}>
                 <h5 className="card-header">Room edit</h5>
                 <div className="card-body">
                     <div className="row">
@@ -72,7 +72,7 @@ function RoomEdit() {
                                     <h5 className="card-title">Create room</h5>
                                     {/* <form onSubmit={onMessageSubmit}> */}
                                     <div className="input-group">
-                                        <TextField type="text" name="create" onChange={event => setSubject(event.target.value)} label="Subject" value={subject}></TextField>
+                                        <TextField type="text" name="create" onChange={event => setSubject(event.target.value)} label="Room name" value={subject}></TextField>
                                         <div className="input-group-append">
                                             <button className="btn btn-success" type="submit" id="messageBtn" onClick={createOnClick}>Send</button>
                                         </div>
