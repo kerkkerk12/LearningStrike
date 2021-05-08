@@ -5,8 +5,8 @@ import Chat from './Chat/Chat';
 export default class Todo extends Component {
     constructor(props) {
     super(props);
-    this.state = this.props.location.state;
-    console.log(this.state);
+    this.state = [];
+    
     }
 
 render(){
@@ -15,10 +15,10 @@ render(){
     
         <div style={{ marginLeft: "auto", marginRight: "auto" }}>
             <ul className="list-group">
-
+{/* 
                 <li className="list-group-item">HomeWork {this.state.subject}</li>
                 <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
-                <h>{this.state.homework}</h>
+                <h>{this.state.homework}</h> */}
             </ul>
 
         </div>

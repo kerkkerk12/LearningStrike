@@ -11,7 +11,7 @@ import Home from './components/Home';
 import Room from './components/Room';
 import Mainroom from './components/Mainroom';
 import RoomEdit from './components/RoomEdit';
-
+import Todo from './components/Todo';
 function refresh(){
   if (window.performance) {
     if (performance.navigation.type == 1) {
@@ -44,6 +44,7 @@ export default class App extends Component {
            <ProtectedRoute exact path="/home" component={Home}/>
            <ProtectedRoute exact path='/mainroom' component={Mainroom}/>
             <ProtectedRoute exact path ="/editroom" component = {RoomEdit}/>
+            <ProtectedRoute exact path = "/todo" component = {Todo}/>
            <Route path='*' component={() => <h1><center>404 NOT FOUND</center></h1>}/>
          </Switch>
        </div>

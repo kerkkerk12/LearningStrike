@@ -15,13 +15,6 @@ const server = app.listen(port, () => {
 
 const io = socketio.listen(server)
 
-io.on('connection', socket => {
-  console.log("New user connected")
-  socket.on('message', ({ name, message }) => {
-    io.emit('message', { name, message })
-    console.log(message);
-  })
-})
 
 
 const option = {
@@ -40,7 +33,54 @@ var allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain)
 
 // Connect mongodb
-mongoose.connect('mongodb://localhost:27017/classroom', option);
+
+var messageModel = mongoose.model('messages', { 
+    // _id:String,
+    room: String, 
+    name: String, 
+    message: String })
+
+mongoose.connect('mongodb://localhost:27017/classroom', option, function (err, db) {
+    if (err) {
+        throw err;
+    }
+    io.on('connection', socket => {
+        var code = "";
+        socket.on("in room", ({roomcode}) => {
+            
+            
+            find(roomcode)
+            
+
+            function find(roomcode){
+                messageModel.find({room:roomcode},function (err,data) {
+                    var history = []
+                    data.map((d) => {
+                        history = [...history,[d.name,d.message]]
+                    })
+                    io.emit("in room",{history})
+                })
+            }
+            
+
+        })
+        socket.on('send message', ({ name, message, code }) => {
+            console.log(message);
+            io.emit('send message', { name, message,code })
+            
+            var newMessage = new messageModel({
+                room: code,
+                name, message,
+                
+            })
+            newMessage.save()
+            
+
+        })
+    })
+
+
+});
 mongoose.set('useFindAndModify', false);
 
 
@@ -113,7 +153,6 @@ app.post('/login', function (req, res) {
                 console.log("no");
                 return res.json({ success: false, message: "Incorrect password" })
             } else {
-                console.log("matched");
                 return res.json({ success: true, message: "Login complete" })
             }
         }
@@ -176,6 +215,8 @@ app.post('/addRoom', (req, res) => {
     console.log(!a);
     newRoom.code = newCode;
     newRoom.save()
+    //create chat
+    
     //Join to this room
     joinModel.findOneAndUpdate(
         { email: email },
