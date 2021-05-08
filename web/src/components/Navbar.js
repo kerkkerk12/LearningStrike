@@ -25,7 +25,7 @@ export default class Navbar extends Component {
           style={{ backgroundColor: "#DEA80A",fontFamily:"Adobe Fan Heiti Std " }}
         >
           <div className="container-fluid">
-            <span className="navbar-brand"><Link to = "/home"><h1 style={{color:'black'}}>Learning Strike</h1></Link></span>
+            <span className="navbar-brand">CLASS HUB</span>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/home">Home</Link></a>
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/editroom">Edit Room</Link></a>

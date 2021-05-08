@@ -12,15 +12,21 @@ const socketio = require('socket.io')
 const server = app.listen(port, () => {
     console.log('Running on port: ', port);
 })
-// import { v4 as uuidv4 } from 'uuid';
 
 const io = socketio.listen(server)
+
+io.on('connection', socket => {
+  console.log("New user connected")
+  socket.on('message', ({ name, message }) => {
+    io.emit('message', { name, message })
+    console.log(message);
+  })
+})
 
 
 const option = {
     useNewUrlParser: true,
     useUnifiedTopology: true
-
 };
 
 app.use(express.json())
@@ -34,58 +40,8 @@ var allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain)
 
 // Connect mongodb
-const chatSchema = mongoose.Schema({
-    room: String,
-    messages: []
-})
-const chatModel = mongoose.model('chats', chatSchema)
-var messageModel = mongoose.model('messages', { 
-    _id:String,
-    room: String, 
-    name: String, 
-    message: String })
-
-mongoose.connect('mongodb://localhost:27017/classroom', option, function (err, db) {
-    if (err) {
-        throw err;
-    }
-    io.on('connection', socket => {
-        var code = "";
-        socket.on('roomcode', ({ roomcode }) => {
-            var history;
-            code = roomcode;
-            // console.log(code);
-            chatModel.findOne({ room: roomcode }, function (err, data) {
-                if (err) console.log(err);
-                history = data.messages
-                // console.log(data.messages);
-                io.emit("roomcode", { history });
-            })
-            // console.log("New user connected")
-
-        })
-        socket.on('send message', ({ name, message, code }) => {
-            io.emit('send message', { name, message })
-            console.log(code);
-            // history.push({name,message})
-            var id = uuidv4();
-            var newMessage = new messageModel({
-                room: code,
-                name, message,
-                _id:id
-            })
-            newMessage.save()
-
-
-        })
-    })
-
-
-});
+mongoose.connect('mongodb://localhost:27017/classroom', option);
 mongoose.set('useFindAndModify', false);
-
-
-
 
 
 // Create User Schema
@@ -139,9 +95,6 @@ app.post('/addUser', (req, res) => {
                 rooms: []
             })
             newJoin.save()
-
-
-            //create new chat
             return res.json({ success: true, message: "created" })
         }
     })
@@ -157,8 +110,10 @@ app.post('/login', function (req, res) {
         else {
 
             if (!user.validPassword(req.body.password)) {
+                console.log("no");
                 return res.json({ success: false, message: "Incorrect password" })
             } else {
+                console.log("matched");
                 return res.json({ success: true, message: "Login complete" })
             }
         }
@@ -170,7 +125,7 @@ mongoose.set('useCreateIndex', true)
 const roomSchema = new mongoose.Schema({
     code: String,
     subject: String,
-    owner: String,
+    owner:String,
     members: [],
 })
 const roomModel = new mongoose.model('rooms', roomSchema)
@@ -189,12 +144,11 @@ app.post('/joinRoom', (req, res) => {
         { email },
         { $push: { rooms: code } },
         function (err, data) {
-            throw err;
         }
     )
     roomModel.findOneAndUpdate(
-        { code },
-        { $push: { members: email } },
+        {code},
+        {$push:{members:email}},
         function (err, data) {
         }
     )
@@ -213,20 +167,15 @@ app.post('/addRoom', (req, res) => {
 
     const newRoom = new roomModel({
         subject,
-        owner: email
+        owner:email
     })
     //create new room model
     newRoom.members.push(email)
     const newCode = randomRoomCode(6);
-    const a = roomModel.findOne({ code: newCode })
-
+    const a = roomModel.findOne({code:newCode})
+    console.log(!a);
     newRoom.code = newCode;
     newRoom.save()
-    //new room chat
-    const newChat = new chatModel({
-        room: newRoom.code,
-    })
-    newChat.save()
     //Join to this room
     joinModel.findOneAndUpdate(
         { email: email },
@@ -241,24 +190,24 @@ app.post('/addRoom', (req, res) => {
     res.json({ message: "Create room complete" })
 
 })
-function getNameByEmail(email) {
-    userModel.findOne({ email: email }, function (err, data) {
-        return data.name + " " + data.lastname;
+function getNameByEmail(email){
+    userModel.findOne({email:email},function(err,data){
+        return data.name + " " +data.lastname;
     })
 }
 app.get('/getRoom/:code', (req, res) => {
     const { code } = req.params;
     console.log(code);
-    roomModel.findOne({ code: code })
-        .then(data => res.json(data))
+    roomModel.findOne({code:code})
+        .then(data=>res.json(data))
         .catch(error =>
             res.json(error))
 })
 
 app.get('/getJoin/:email', (req, res) => {
     const { email } = req.params;
-    joinModel.findOne({ email: email })
-        .then(data => res.json(data.rooms))
+    joinModel.findOne({email:email})
+        .then(data=>res.json(data.rooms))
         .catch(error =>
             res.json(error))
 })
