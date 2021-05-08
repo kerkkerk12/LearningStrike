@@ -36,28 +36,28 @@ const style = {
   }
   
 function Chat(props) {
-	const [ state, setState ] = useState({ message: "", name: window.email ,code:""})
+	const [ state, setState ] = useState({ message: "", name: window.email })
 	const [ chat, setChat ] = useState([])
 	// const {roomcode} = props;
 	const [code,setCode] = useState(props.roomcode)
 	const socketRef = useRef()
 
 	useEffect(
-		// () => {
-		// 	socketRef.current = io.connect("http://localhost:8000")
-		// 	socketRef.current.on("message", ({ name, message }) => {
-		// 		setChat([ ...chat, { name, message } ])
-		// 	})
-		// 	return () => socketRef.current.disconnect()
-		// },
-		// [ chat ]
+		
 		() => {
 			socketRef.current = io.connect("http://localhost:8000")
-			
-			socketRef.current.on("send message", ({ name, message }) => {
-				setChat([ ...chat, { name, message } ])
-				alert(code)
+			socketRef.current.emit("roomcode",{roomcode:code})
+			socketRef.current.on("roomcode",({history}) =>{
+				// alert(history)	
+				// setChat(history)
+				console.log(history);
 			})
+			socketRef.current.on("send message", ({ name, message,code }) => {
+				
+				setChat([ ...chat, { name, message,code } ])
+				
+			})
+			
 			console.log(code);
 			return () => socketRef.current.disconnect()
 		},
@@ -70,7 +70,9 @@ function Chat(props) {
 
 	const onMessageSubmit = (e) => {
 		const { name, message } = state
-		socketRef.current.emit("send message", { name, message })
+		socketRef.current.emit("send message", { name, message,code })
+		
+		
 		e.preventDefault()
 		setState({ message: "", name })
 	}
@@ -79,7 +81,10 @@ function Chat(props) {
 		
 
 		return chat.map(({ name, message }, index) => (
+			
 			<div key={index}>
+		
+
 				<div class="alert alert-warning" role="alert" id="message-list" >{name}: <span style={style.span}>{message}</span></div>
 			</div>
 		))
