@@ -52,7 +52,6 @@ function RoomEdit() {
     }
     
     
-
     return (
         <div 
             style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 

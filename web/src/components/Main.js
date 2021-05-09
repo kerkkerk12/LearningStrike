@@ -33,10 +33,6 @@ export default class Main extends Component {
                 fontFamily:"Adobe Fan Heiti Std ",
                 
                 
-                
-                
-
-                
               }}
             >
               LEARNING STRIKE

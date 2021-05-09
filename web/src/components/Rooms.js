@@ -19,7 +19,6 @@ export default class Rooms extends Component {
 
     }
 
-
     render() {
 
 
@@ -41,7 +40,6 @@ export default class Rooms extends Component {
 
             </div>
         )
-
 
     }
 }

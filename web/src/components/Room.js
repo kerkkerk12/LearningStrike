@@ -41,7 +41,6 @@ export default class Room extends Component {
                     </div>
                 </div>
 
-
             </section>
         )
     }

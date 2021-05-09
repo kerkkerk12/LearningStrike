@@ -173,9 +173,12 @@ export default class Register extends Component {
                           style={{ marginRight: "20px" }}
                         >
                           REGISTER
+
                         </a>
                         <Link className="btn btn-primary" to="/" type="button">
+
                           BACK
+                          
                         </Link>
                       </div>
                     </form>

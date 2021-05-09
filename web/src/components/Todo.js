@@ -11,8 +11,6 @@ export default class Todo extends Component {
         }
 
     }
-
-
     render() {
         return (<div style={{ backgroundImage: 'url(/images/background.jpg)', width: "100vw", height: "100vh", backgroundSize: "cover" }}>
             <Navbar></Navbar>
