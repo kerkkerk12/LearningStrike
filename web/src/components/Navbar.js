@@ -31,11 +31,11 @@ export default class Navbar extends Component {
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/editroom" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>Edit Room</h2></Link></a>
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/todo" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>To do work</h2></Link></a>
               
-              <h2 style={{fontFamily:"Adobe Fan Heiti Std",color:"#000080"}}><b>{window.email}&nbsp;</b></h2>
+              <h2 style={{marginTop: "auto",fontFamily:"Adobe Fan Heiti Std",color:"#000080"}}><b>{window.email}&nbsp;</b></h2>
              
               <img
                 src={process.env.PUBLIC_URL + "/images/usericon.png"}
-                style={{ width: "60px" }}
+                style={{width: "60px" }}
                 
               ></img>
               &nbsp;&nbsp;
