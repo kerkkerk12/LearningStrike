@@ -31,7 +31,7 @@ export default class Navbar extends Component {
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/editroom" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>Edit Room</h2></Link></a>
               <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/todo" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>To do work</h2></Link></a>
               
-              <h2 style={{fontFamily:"Adobe Fan Heiti Std"}}>{window.email}&nbsp;</h2>
+              <h2 style={{fontFamily:"Adobe Fan Heiti Std",color:"#000080"}}><b>{window.email}&nbsp;</b></h2>
              
               <img
                 src={process.env.PUBLIC_URL + "/images/usericon.png"}
@@ -40,11 +40,11 @@ export default class Navbar extends Component {
               ></img>
               &nbsp;&nbsp;
               <a
-                className="btn btn-primary me-md-2"
+                className="btn btn-danger me-md-2"
                 type="button"
                 onClick={this.onClick}
                 data-bs-toggle="modal"
-                style={{ marginRight: "auto" }}
+                style={{ margin: "auto" ,color:"white"}}
               >
                 Logout
               </a>
