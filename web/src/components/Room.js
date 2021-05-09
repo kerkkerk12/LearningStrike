@@ -27,7 +27,7 @@ export default class Room extends Component {
         return (
             <section>
                 <div className="card col" style={{ width: '18rem', margin: '30px',padding: "10px",border: "5px solid black" }}>
-                    <img className="card-img-top" src={process.env.PUBLIC_URL + '/images/dog.png'} style={{ width: '100%' }} alt="Card image cap" />
+                    <img className="card-img-top" src={process.env.PUBLIC_URL + '/images/classroom.png'} style={{ width: '100%' }} alt="Card image cap" />
                     <div className="card-body">
                         <center>
                             <h5 className="card-title">{this.state.subject}</h5>

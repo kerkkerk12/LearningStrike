@@ -22,34 +22,32 @@ export default class Navbar extends Component {
         <div style={{backgroundColor: "#000000" ,border: "1px solid"}}></div>
         <nav
           className="navbar navbar-expand-lg navbar-light"
-          style={{ backgroundColor: "#DEA80A",fontFamily:"Adobe Fan Heiti Std " }}
+          style={{ backgroundColor: "#ffb137",fontFamily:"Adobe Fan Heiti Std " }}
         >
           <div className="container-fluid">
-            <span className="navbar-brand">CLASS HUB</span>
+            <span className="navbar-brand" ><Link to = "/home" style={{ color: 'inherit', textDecoration: 'inherit'}}><h1>Learning Strike</h1></Link></span>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/home">Home</Link></a>
-              <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/editroom">Edit Room</Link></a>
-              <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/todo">To do works</Link></a>
-              {/* <button className="btn me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#loginPopup" style={{ marginLeft: '15px' ,backgroundColor:'#f5c27d'}}>Login</button>
-                    <button className="btn me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#registerPopup" style={{ marginLeft: '15px',backgroundColor:'#ff9966'}}>REGISTER</button> */}
+              <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/home" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>Home</h2></Link></a>
+              <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/editroom" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>Edit Room</h2></Link></a>
+              <a style={{ marginRight: "30px", marginTop: "auto" }}><Link to = "/todo" style={{ color: 'inherit', textDecoration: 'inherit'}}><h2>To do work</h2></Link></a>
+              
+              <h2 style={{fontFamily:"Adobe Fan Heiti Std"}}>{window.email}&nbsp;</h2>
+             
+              <img
+                src={process.env.PUBLIC_URL + "/images/usericon.png"}
+                style={{ width: "60px" }}
+                
+              ></img>
+              &nbsp;&nbsp;
               <a
                 className="btn btn-primary me-md-2"
                 type="button"
                 onClick={this.onClick}
                 data-bs-toggle="modal"
-                data-bs-target="#registerPopup"
-                style={{ marginRight: "20px" }}
+                style={{ marginRight: "auto" }}
               >
                 Logout
               </a>
-              {window.email}
-             
-              <img
-                src={process.env.PUBLIC_URL + "/images/dog.png"}
-                style={{ width: "50px" }}
-                
-              ></img>
-              
             </div>
           </div>
         </nav>
