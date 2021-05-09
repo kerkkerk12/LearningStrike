@@ -4,36 +4,43 @@ import Chat from './Chat/Chat';
 
 export default class Todo extends Component {
     constructor(props) {
-    super(props);
-    this.state = [];
-    
+        super(props);
+        this.state = {
+            homework: ["CN420", "CN555", "WY69"],
+
+        }
+
     }
 
-render(){
-    return(<div style={{ backgroundImage: 'url(/images/background.jpg)', width: "100vw", height: "100vh", backgroundSize: "cover" }}>
-    <Navbar></Navbar>
-    
-        <div style={{ marginLeft: "auto", marginRight: "auto" }}>
-            <ul className="list-group">
-{/* 
-                <li className="list-group-item">HomeWork {this.state.subject}</li>
-                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
-                <h>{this.state.homework}</h> */}
-            </ul>
+
+    render() {
+        return (<div style={{ backgroundImage: 'url(/images/background.jpg)', width: "100vw", height: "100vh", backgroundSize: "cover" }}>
+            <Navbar></Navbar>
+
+            <div>{this.state.homework.map(Todo => {
+                return (<div style={{ marginLeft: "30%", marginRight: "30%", marginTop: "2%", textAlign: 'center' }}>
+                <ul className="list-group">
+
+                    <li className="list-group-item">HomeWork {Todo}</li>
+                    {/* <h>{this.state.homework}</h> */}
+                </ul>
+            </div>)
+            })}
+            </div>
+
+            
+
+
+
+
+
+
+
+
+
+
 
         </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </div>
-    );
-}
+        );
+    }
 }
