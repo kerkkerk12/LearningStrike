@@ -20,7 +20,6 @@ export default function Home(props) {
             </div>
            
             
-               
             <div className="row">
                 <div className="col" style={{ maxWidth: '10%' }}>
                     

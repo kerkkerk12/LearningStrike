@@ -46,7 +46,9 @@ export default class Navbar extends Component {
                 data-bs-toggle="modal"
                 style={{ margin: "auto" ,color:"white"}}
               >
+
                 Logout
+                
               </a>
             </div>
           </div>
