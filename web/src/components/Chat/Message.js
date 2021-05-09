@@ -13,7 +13,7 @@ export default function Message(props) {
 
         return (
             <div key={index}>
-                <div class="alert alert-success" role="alert" style={style.myMessage}>{c[0]}:{c[1]}</div>
+                <div class="alert alert-success" role="alert" style={style.myMessage}>You : {c[1]}</div>
             </div>
 
         )
@@ -21,7 +21,7 @@ export default function Message(props) {
     else {
         return (
             <div key={index}>
-                <div class="alert alert-warning" role="alert" style={style.otherMessage} >{c[0]}:{c[1]}</div>
+                <div class="alert alert-warning" role="alert" style={style.otherMessage} >{c[0]} : {c[1]}</div>
             </div>
         )
     }
