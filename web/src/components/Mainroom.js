@@ -13,18 +13,18 @@ export default class Mainroom extends Component {
     render() {
         return (
             <div style={{ backgroundImage: 'url(/images/background.jpg)', width: "100vw", height: "100vh", backgroundSize: "cover" }}>
-                <Navbar></Navbar>
-  
-                <div className="card" style={{ height: 250, width: '70rem', marginLeft: "auto", marginRight: "auto", backgroundColor: "#F9EFDA", display: "flex", marginTop: 30 }}>
+                <Navbar></Navbar>    
+                <div className="card" style={{ height: 275, width: '70rem', marginLeft: "auto", marginRight: "auto", backgroundColor: "#F9EFDA", display: "flex", marginTop: 30 }}>
                             <div className="card-body">
                                 <div style={{ fontSize: 40, marginLeft: 15 }}>
-                                    <p className="card-text">Welcome to {this.state.subject} classroom!!!</p>
+                                    <p className="card-text">Welcome to {this.state.subject} classroom!!! </p>
                                     <h3>Code to Join : {this.state.code}</h3>
-                                    
+                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
+                                    <button type="button" style ={{marginLeft:"93%",marginBottom:"2%"}}className="btn btn-success">Create</button>
                                 </div>
                             </div>
-                </div>
-                      
+                </div> 
+                
                 <div class="row" style={{marginTop: 30 }}>
                     <div class="col-sm-3" style={{marginLeft: "auto" }}>
                         <Chat roomcode={this.state.code}></Chat>
