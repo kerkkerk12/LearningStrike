@@ -52,7 +52,6 @@ function RoomEdit() {
     }
     
     
-
     return (
         <div 
             style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 
@@ -93,8 +92,10 @@ function RoomEdit() {
                                     <h5 className="card-title">Join room</h5>
                                     
                                         <div className="input-group">
-                                            <input type="text" class="form-control" placeholder="Code room"name="join" onChange={event => setCode(event.target.value)} value={code}></input>
-                                            <button class="btn btn-success" type="submit" onClick={createOnClick} >Send</button>
+                                            <TextField thpe="text" name="join" onChange={event => setCode(event.target.value)} label="Code" value={code}></TextField>
+                                            <div className="input-group-append">
+                                                <button className="btn btn-success" type="submit" id="messageBtn" onClick={joinOnClick}>Send</button>
+                                            </div>
                                         </div>
 
 
