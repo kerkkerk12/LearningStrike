@@ -7,7 +7,8 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
 const port = 8000
-const socketio = require('socket.io')
+const socketio = require('socket.io');
+const { type } = require('os');
 
 const server = app.listen(port, () => {
     console.log('Running on port: ', port);
@@ -34,11 +35,13 @@ app.use(allowCrossDomain)
 
 // Connect mongodb
 
-var messageModel = mongoose.model('messages', { 
-    // _id:String,
-    room: String, 
-    name: String, 
-    message: String })
+var messageModel = mongoose.model('messages', {
+
+    room: String,
+    name: String,
+    message: String,
+
+})
 
 mongoose.connect('mongodb://localhost:27017/classroom', option, function (err, db) {
     if (err) {
@@ -46,35 +49,35 @@ mongoose.connect('mongodb://localhost:27017/classroom', option, function (err, d
     }
     io.on('connection', socket => {
         var code = "";
-        socket.on("in room", ({roomcode}) => {
-            
-            
-            find(roomcode)
-            
+        socket.on("in room", ({ roomcode }) => {
 
-            function find(roomcode){
-                messageModel.find({room:roomcode},function (err,data) {
+
+            find(roomcode)
+
+
+            function find(roomcode) {
+                messageModel.find({ room: roomcode }, function (err, data) {
                     var history = []
                     data.map((d) => {
-                        history = [...history,[d.name,d.message]]
+                        history = [...history, [d.name, d.message]]
                     })
-                    io.emit("in room",{history})
+                    io.emit("in room", { history })
                 })
             }
-            
+
 
         })
         socket.on('send message', ({ name, message, code }) => {
             console.log(message);
-            io.emit('send message', { name, message,code })
-            
+            io.emit('send message', { name, message, code })
+
             var newMessage = new messageModel({
                 room: code,
                 name, message,
-                
+
             })
             newMessage.save()
-            
+
 
         })
     })
@@ -164,7 +167,7 @@ mongoose.set('useCreateIndex', true)
 const roomSchema = new mongoose.Schema({
     code: String,
     subject: String,
-    owner:String,
+    owner: String,
     members: [],
 })
 const roomModel = new mongoose.model('rooms', roomSchema)
@@ -186,8 +189,8 @@ app.post('/joinRoom', (req, res) => {
         }
     )
     roomModel.findOneAndUpdate(
-        {code},
-        {$push:{members:email}},
+        { code },
+        { $push: { members: email } },
         function (err, data) {
         }
     )
@@ -206,17 +209,17 @@ app.post('/addRoom', (req, res) => {
 
     const newRoom = new roomModel({
         subject,
-        owner:email
+        owner: email
     })
     //create new room model
     newRoom.members.push(email)
     const newCode = randomRoomCode(6);
-    const a = roomModel.findOne({code:newCode})
+    const a = roomModel.findOne({ code: newCode })
     console.log(!a);
     newRoom.code = newCode;
     newRoom.save()
     //create chat
-    
+
     //Join to this room
     joinModel.findOneAndUpdate(
         { email: email },
@@ -231,27 +234,72 @@ app.post('/addRoom', (req, res) => {
     res.json({ message: "Create room complete" })
 
 })
-function getNameByEmail(email){
-    userModel.findOne({email:email},function(err,data){
-        return data.name + " " +data.lastname;
+function getNameByEmail(email) {
+    userModel.findOne({ email: email }, function (err, data) {
+        return data.name + " " + data.lastname;
     })
 }
 app.get('/getRoom/:code', (req, res) => {
     const { code } = req.params;
     console.log(code);
-    roomModel.findOne({code:code})
-        .then(data=>res.json(data))
+    roomModel.findOne({ code: code })
+        .then(data => res.json(data))
         .catch(error =>
             res.json(error))
 })
 
 app.get('/getJoin/:email', (req, res) => {
     const { email } = req.params;
-    joinModel.findOne({email:email})
-        .then(data=>res.json(data.rooms))
+    joinModel.findOne({ email: email })
+        .then(data => res.json(data.rooms))
         .catch(error =>
             res.json(error))
 })
 
+// create homework model
+const homeworkSchema = new mongoose.Schema({
+    room: "",
+    title: "",
+    details: ""
+})
 
+const homeworkModel = new mongoose.model('homeworks', homeworkSchema)
 
+app.post('/createHomework', (req, res) => {
+    const { code, title, details } = req.body;
+    const newHomework = new homeworkModel({
+        room: code,
+        title,
+        details
+    })
+    newHomework.save()
+    res.json({ success: true })
+})
+
+app.get('/getHomework/:code', (req, res) => {
+    const { code } = req.params;
+    homeworkModel.find({ room: code }, (err, data) => {
+        var homework = []
+        data.map((d) => {
+            homework = [...homework, d]
+        })
+        res.json(homework)
+    })
+    console.log("getHomework");
+})
+app.get('/getTodo/:code', (req, res) => {
+    const { code } = req.params;
+    var todolist = []
+    homeworkModel.find({room:code},(err,data)=>{
+        res.json(data)
+    })
+    
+})
+
+app.get('/getRoomName/:code',(req,res) => {
+    const {code} = req.params;
+    roomModel.findOne({code:code},(err,data)=>{
+        res.json(data.subject)
+    })
+
+})
