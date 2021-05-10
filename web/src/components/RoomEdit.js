@@ -57,8 +57,13 @@ function RoomEdit() {
         <div 
             style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 
             <Navbar></Navbar>
-            <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Adobe Fan Heiti Std",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "15px",marginTop: "8px"}}>
-                <h2>ROOM EDIT</h2>
+            <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily: "Adobe Fan Heiti Std ", paddingTop: "3%", width: "130px", padding: "10px", border: "5px solid black", margin: "12px", marginTop: "20px", backgroundColor: "white", opacity: "0.7" }}>
+                
+                <h2>
+                   <center>
+                    ROOM EDIT
+                    </center>
+                    </h2>
                
             </div>
             <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%",fontFamily:"Adobe Fan Heiti Std"}}>
