@@ -52,6 +52,7 @@ function RoomEdit() {
     }
     
     
+
     return (
         <div 
             style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 
@@ -61,7 +62,7 @@ function RoomEdit() {
                
             </div>
             <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%",fontFamily:"Adobe Fan Heiti Std"}}>
-                <h5 className="card-header">Room edit</h5>
+                <h2 className="card-header">Room edit</h2>
                 <div className="card-body">
                     <div className="row">
                         <div className="col-sm-6">
@@ -70,11 +71,9 @@ function RoomEdit() {
 
                                     <h5 className="card-title">Create room</h5>
                                     {/* <form onSubmit={onMessageSubmit}> */}
-                                    <div className="input-group">
-                                        <TextField type="text" name="create" onChange={event => setSubject(event.target.value)} label="Room name" value={subject}></TextField>
-                                        <div className="input-group-append">
-                                            <button className="btn btn-success" type="submit" id="messageBtn" onClick={createOnClick}>Send</button>
-                                        </div>
+                                    <div className="input-group ">
+                                        <input type="text" class="form-control" placeholder="Room name"name="create" onChange={event => setSubject(event.target.value)} value={subject}></input>
+                                        <button class="btn btn-success" type="submit" onClick={createOnClick} >Send</button>
                                     </div>
 
                                     {/* </form> */}
@@ -88,10 +87,8 @@ function RoomEdit() {
                                     <h5 className="card-title">Join room</h5>
                                     
                                         <div className="input-group">
-                                            <TextField thpe="text" name="join" onChange={event => setCode(event.target.value)} label="Code" value={code}></TextField>
-                                            <div className="input-group-append">
-                                                <button className="btn btn-success" type="submit" id="messageBtn" onClick={joinOnClick}>Send</button>
-                                            </div>
+                                            <input type="text" class="form-control" placeholder="Code room"name="join" onChange={event => setCode(event.target.value)} value={code}></input>
+                                            <button class="btn btn-success" type="submit" onClick={createOnClick} >Send</button>
                                         </div>
 
 
