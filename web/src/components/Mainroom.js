@@ -37,7 +37,9 @@ export default class Mainroom extends Component {
                                 <li className="list-group-item"><h1>Homework</h1></li>
 
                             </ul>
+                            {/* Assignment List */}
                             <ul className="list-group" >
+                                {/* <li className="alert alert-info"><h3><center>HomeWork 1</center></h3></li> */}
                                 <AssignmentList state={this.state}/>
                             </ul>
 

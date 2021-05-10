@@ -6,7 +6,7 @@ export default class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            homework: [],
+            homework: ["CN420", "CN555", "WY69"],
         }
 
         fetch("http://localhost:8000/getJoin/" + window.email, {
@@ -15,6 +15,7 @@ export default class Todo extends Component {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
+
         })
             .then((res) => res.json())
             .then((data) => {
@@ -26,29 +27,11 @@ export default class Todo extends Component {
                             "Content-Type": "application/json",
                         },
 
-                    }).then((res) => res.json()).then((data2) => {
-
-                        data2.map((dat) => {
-                            fetch("http://localhost:8000/getRoomname/" + d, {
-                                method: "get",
-                                headers: {
-                                    Accept: "application/json",
-                                    "Content-Type": "application/json",
-                                },
-                                
-                            }).then((res) => res.json()).then((roomname)=>{
-                                this.setState({ homework: [...this.state.homework, [roomname,dat.title]] })
-
-                            })
-
-
-
-
-                        })
                     })
-                    console.log(this.state.homework);
                 })
             })
+        // .then((data) => console.log();)
+        // .then((data) => this.setState({homework:data}))
 
     }
     render() {
@@ -65,11 +48,24 @@ export default class Todo extends Component {
                 return (<div style={{ margin: 'auto', marginTop: "2%", textAlign: 'center', maxWidth: '50%', opacity: '0.8' }}>
                     <ul className="list-group">
 
-                        <li className="list-group-item"><h2>Subject {Todo[0]}:{Todo[1]}</h2></li>
+                        <li className="list-group-item"><h2>HomeWork {Todo}</h2></li>
+                        {/* <h>{this.state.homework}</h> */}
                     </ul>
                 </div>)
             })}
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
         );

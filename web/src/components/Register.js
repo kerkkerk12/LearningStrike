@@ -72,7 +72,9 @@ export default class Register extends Component {
             backgroundSize: "cover",
           }}
         >
-         
+          {/* <Navbar></Navbar> */}
+          {/* <img src="https://burst.shopifycdn.com/photos/wrtiting-tools.jpg?width=1200&format=pjpg&exif=0&iptc=0" style={{minHeight: '100%',minWidth:'100%'}}></img> */}
+
           <div className="container" style={{ opacity: "0.8" }}>
             <center>
               <h1
