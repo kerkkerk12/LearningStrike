@@ -1,12 +1,10 @@
 import React from 'react'
 const style = {
     myMessage:{
-        textAlign:'right',
-        margin:'auto'
+        textAlign:'right'
     },
     otherMessage:{
-        textAlign:'left',
-        margin:'auto'
+        textAlign:'left'
     }
 }
 export default function Message(props) {
@@ -15,7 +13,7 @@ export default function Message(props) {
 
         return (
             <div key={index}>
-                <div className="alert alert-success" role="alert" style={style.myMessage}>You : {c[1]}</div>
+                <div class="alert alert-success" role="alert" style={style.myMessage}>You : {c[1]}</div>
             </div>
 
         )
