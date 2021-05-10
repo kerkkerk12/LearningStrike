@@ -57,10 +57,15 @@ function RoomEdit() {
             style={{backgroundImage: "url(/images/YellowWallpaper2.png)",height: "100vh",backgroundSize: "cover",}}> 
             <Navbar></Navbar>
             <div style={{ marginLeft: "1.7%", color: "#000000", fontFamily:"Adobe Fan Heiti Std",paddingTop: "3%" ,width: "130px",padding: "10px",border: "5px solid black", margin: "15px",marginTop: "8px"}}>
-                <h2>ROOM EDIT</h2>
+                <h2>
+                    <center>
+                    ROOM EDIT
+                    </center>
+
+                </h2>
                
             </div>
-            <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%",fontFamily:"Adobe Fan Heiti Std"}}>
+            <div className="card text-center" style={{ maxWidth: '45%' ,padding: "10px",border: "5px solid black",margin:"10%",marginLeft:"27%",fontFamily:"Adobe Fan Heiti Std",opacity:"0.8"}}>
                 <h5 className="card-header">Room edit</h5>
                 <div className="card-body">
                     <div className="row">
@@ -69,7 +74,6 @@ function RoomEdit() {
                                 <div className="card-body">
 
                                     <h5 className="card-title">Create room</h5>
-                                    {/* <form onSubmit={onMessageSubmit}> */}
                                     <div className="input-group">
                                         <TextField type="text" name="create" onChange={event => setSubject(event.target.value)} label="Room name" value={subject}></TextField>
                                         <div className="input-group-append">
