@@ -291,7 +291,15 @@ app.get('/getTodo/:code', (req, res) => {
     const { code } = req.params;
     var todolist = []
     homeworkModel.find({room:code},(err,data)=>{
-        console.log(data);
+        res.json(data)
     })
     
+})
+
+app.get('/getRoomName/:code',(req,res) => {
+    const {code} = req.params;
+    roomModel.findOne({code:code},(err,data)=>{
+        res.json(data.subject)
+    })
+
 })
